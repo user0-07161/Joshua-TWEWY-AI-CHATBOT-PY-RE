@@ -3,9 +3,6 @@
 import os
 import time  # cooldown
 
-# to keep the repl online
-from keep_alive import keep_alive
-
 # these modules are for querying the Hugging Face model
 import json
 import requests
@@ -23,7 +20,7 @@ class MyClient(discord.Client):
         super().__init__()
         self.api_endpoint = API_URL + model_name
         # retrieve the secret API token from the system environment
-        huggingface_token = os.environ['HUGGINGFACE_TOKEN']
+        huggingface_token = "HF_TOKEN"
         # format the header in our request to Hugging Face
         self.request_headers = {
             'Authorization': 'Bearer {}'.format(huggingface_token)
@@ -88,9 +85,7 @@ class MyClient(discord.Client):
 def main():
     
     client = MyClient('DialoGPT-medium-TWEWYJoshua')
-    client.run(os.environ['DISCORD_TOKEN'])
+    client.run("TOKEN_HERE")
 
 if __name__ == '__main__':
-  keep_alive()
   main()
-
